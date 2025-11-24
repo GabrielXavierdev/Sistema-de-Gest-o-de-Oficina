@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Novo Cliente - JUNIOR AUTO AR{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Adicionar Novo Cliente</h5>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('new_client') }}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="name" name="name" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, 	'')">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" maxlength="15" oninput="formatPhone(this)">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Adicionar Cliente
+                </button>
+                <a href="{{ url_for('clients') }}" class="btn btn-secondary">
+                    <i class="fas fa-times me-1"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function formatPhone(input) {
+        let value = input.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+        
+        // Limita a 11 dígitos
+        if (value.length > 11) {
+            value = value.substring(0, 11);
+        }
+
+        let formattedValue = '';
+        if (value.length > 0) {
+            formattedValue = '(' + value.substring(0, 2);
+        }
+        if (value.length > 2) {
+            formattedValue += ') ' + value.substring(2, 7);
+        }
+        if (value.length > 7) {
+            formattedValue += '-' + value.substring(7, 11);
+        }
+
+        input.value = formattedValue;
+    }
+</script>
+{% endblock %}

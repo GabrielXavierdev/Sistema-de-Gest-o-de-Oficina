@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Editar Serviço{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-header">Editar Serviço</div>
+  <div class="card-body">
+    <form method="POST">
+      <div class="mb-3">
+        <label>Descrição</label>
+        <textarea name="description" class="form-control">{{ service.description }}</textarea>
+      </div>
+      <div class="mb-3">
+        <label>Custo</label>
+        <input type="text" name="cost" value="{{ service.cost }}" class="form-control">
+      </div>
+      <div class="mb-3">
+        <label>Veículo</label>
+        <select name="vehicle_id" class="form-control">
+          {% for v in vehicles %}
+          <option value="{{ v.id }}" {% if v.id == service.vehicle_id %}selected{% endif %}>{{ v.license_plate }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button class="btn btn-primary">Salvar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
