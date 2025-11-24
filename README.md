@@ -47,3 +47,23 @@ flask run
 ```
 
 O sistema estará disponível em: **http://127.0.0.1:5000**
+
+
+junior_auto_ar/
+│
+├── app.py # Arquivo principal da aplicação
+├── config.py # Configurações gerais e do banco
+├── models.py # Classes e modelos do SQLAlchemy
+│
+├── templates/ # Templates HTML Jinja2
+│ ├── base.html
+│ ├── index.html
+│ ├── clients.html
+│ ├── vehicles.html
+│ ├── services.html
+│ ├── parts.html
+│ ├── new_.html
+│ └── edit_.html
+│
+├── static/ # CSS, JS, imagens
+
